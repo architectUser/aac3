@@ -71,6 +71,12 @@ export const constantRouterMap = [
         meta: { title: '调查问卷', icon: 'chart' }
       },
       {
+        path: 'editsurvery',
+        component: () => import('@/views/news/editsurvery/editsurvery'),
+        name: 'editsurvery',
+        meta: { title: '编辑调查问卷', icon: 'chart' }
+      },
+      {
         path: 'hots',
         component: () => import('@/views/news/hots/hots'),
         name: 'hots',
