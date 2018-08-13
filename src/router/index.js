@@ -124,7 +124,7 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  { path: '/editAd', component: () => import('@/views/news/hots/editAd') },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

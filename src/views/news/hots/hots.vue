@@ -9,8 +9,8 @@
     
     <!-- 公告列表展示页 -->
     <el-row :gutter="20">
-        <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6">
-            <el-card class="">
+        <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6" v-for="n in 4" :key="n">
+            <el-card class="" @click.native="gotoEditAd">
                 <div slot="header" class="clearfix">
                     <span>公告标题</span>
                     <el-button style="float: right; padding: 3px 0" type="text" @click="dialogFormVisible = true">编辑</el-button>
@@ -36,87 +36,6 @@
                 </div>
             </el-card>
         </el-col>
-        <el-col :xs="4" :sm="6" :md="6" :lg="6" :xl="6">
-            <el-card class="">
-                <div slot="header" class="clearfix">
-                    <span>公告标题</span>
-                     <el-button style="float: right; padding: 3px 0" type="text" @click="dialogFormVisible = true">编辑</el-button>
-
-                    <!-- 编辑页面弹窗 -->
-                    <el-dialog title="公告编辑页面" :visible.sync="dialogFormVisible">
-                        <el-form :model="form">
-                            <el-form-item label="公告标题" :laber-width="formLabelWidth">
-                                <el-input v-model="form.title" auto-complete="off"></el-input>
-                            </el-form-item>
-                            <el-form-item label="公告内容" :laber-width="formLabelWidth">
-                                <el-input v-model="form.content" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <div solt="footer" class="dialog-footer">
-                            <el-button @click="dislogFormVisible=false">取消</el-button>
-                            <el-button @click="dislogFormVisible=false" type="primary">确定</el-button>
-                        </div>
-                    </el-dialog>
-                </div>
-                <div class="text item pic">
-                    <img src="" alt="" >
-                </div>
-            </el-card>
-        </el-col>
-       <el-col :xs="4" :sm="6" :md="6" :lg="6" :xl="6">
-            <el-card class="">
-                <div slot="header" class="clearfix">
-                    <span>公告标题</span>
-                     <el-button style="float: right; padding: 3px 0" type="text" @click="dialogFormVisible = true">编辑</el-button>
-
-                    <!-- 编辑页面弹窗 -->
-                    <el-dialog title="公告编辑页面" :visible.sync="dialogFormVisible">
-                        <el-form :model="form">
-                            <el-form-item label="公告标题" :laber-width="formLabelWidth">
-                                <el-input v-model="form.title" auto-complete="off"></el-input>
-                            </el-form-item>
-                            <el-form-item label="公告内容" :laber-width="formLabelWidth">
-                                <el-input v-model="form.content" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <div solt="footer" class="dialog-footer">
-                            <el-button @click="dislogFormVisible=false">取消</el-button>
-                            <el-button @click="dislogFormVisible=false" type="primary">确定</el-button>
-                        </div>
-                    </el-dialog>
-                </div>
-                <div class="text item pic">
-                    <img src="" alt="" >
-                </div>
-            </el-card>
-        </el-col>
-        <el-col :xs="8" :sm="6" :md="6" :lg="6" :xl="6">
-            <el-card class="">
-                <div slot="header" class="clearfix">
-                    <span>公告标题</span>
-                     <el-button style="float: right; padding: 3px 0" type="text" @click="dialogFormVisible = true">编辑</el-button>
-
-                    <!-- 编辑页面弹窗 -->
-                    <el-dialog title="公告编辑页面" :visible.sync="dialogFormVisible">
-                        <el-form :model="form">
-                            <el-form-item label="公告标题" :laber-width="formLabelWidth">
-                                <el-input v-model="form.title" auto-complete="off"></el-input>
-                            </el-form-item>
-                            <el-form-item label="公告内容" :laber-width="formLabelWidth">
-                                <el-input v-model="form.content" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <div solt="footer" class="dialog-footer">
-                            <el-button @click="dislogFormVisible=false">取消</el-button>
-                            <el-button @click="dislogFormVisible=false" type="primary">确定</el-button>
-                        </div>
-                    </el-dialog>
-                </div>
-                <div class="text item pic">
-                    <img src="" alt="" >
-                </div>
-            </el-card>
-       </el-col>
     </el-row>
 
   </div>
@@ -133,6 +52,11 @@ export default {
         content: ''
       },
       formLabelWidth: '120px'
+    }
+  },
+  methods: {
+    gotoEditAd() {
+      this.$router.push({ path: '/editAd' })
     }
   }
 }

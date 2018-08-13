@@ -188,9 +188,9 @@ export default {
     },
     // 完成编辑
     finshEdit(event) {
-      var editWrap = this.$refs.edit
+      // var editWrap = this.$refs.edit
       // var s = this.$refs.radioFinish
-      console.log($(".edit"))
+      // console.log($(".edit"))
       // $('.radioFinish').empty()
       // $('.radioFinish').append($(".question-area").clone())
       // $('.radioFinish .addchoose').hide();
@@ -198,8 +198,8 @@ export default {
     },
     // 删除编辑区域
     removeChoose() {
-      console.log(this);
-      $(event.target).parents('.question-wrap').hide();
+      // console.log(this);
+      // $(event.target).parents('.question-wrap').hide();
     }
   }
 }
