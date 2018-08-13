@@ -20,9 +20,9 @@
         </div>
 
        <!-- 单选编辑完成区域-->
-       <div class="radioFinish" ref="radioFinish">
+       <div class="radioFinish radio-wrap" ref="radioFinish">
           <h4 ref="h4">{{question}}<span>【单选】</span></h4>
-          <div v-for="item in items" :key="item.value">
+          <div v-for="item in radioItems" :key="item.value">
             <el-radio>{{item.input}} <el-input  v-if="item.isChoose"></el-input></el-radio>
           </div>
        </div>
@@ -52,7 +52,7 @@
 
 
      <!-- 多选-->
-     <el-card class="margintop question-wrap" v-show="radioQuestion" ref="questionWrap">
+     <el-card class="margintop question-wrap checkbox-wrap" v-show="radioQuestion" ref="questionWrap">
         <div class="btn-area">
           <el-button size="small" type="primary">上移</el-button>
           <el-button size="small" type="primary">下移</el-button>
@@ -60,22 +60,21 @@
           <el-button size="small" type="primary"  @click="removeChoose" >删除</el-button>
         </div>
 
-       <!-- 单选编辑完成区域-->
+       <!-- 多选编辑完成区域-->
        <div class="radioFinish" ref="radioFinish">
-          <h4 ref="h4">{{question}}<span>【单选】</span></h4>
-          <div v-for="item in items" :key="item.value">
-            <el-radio>{{item.input}} <el-input  v-if="item.isChoose"></el-input></el-radio>
+          <h4 ref="h4">{{question}}<span>【多选】</span></h4>
+          <div v-for="item in checkboxItems" :key="item.value">
+            <el-checkbox>{{item.input}} </el-checkbox>
           </div>
        </div>
 
-        <!-- 单选编辑区域 -->
+        <!-- 多选编辑区域 -->
        <div class="edit margintop" v-show="showwrap" ref="edit">
           <div class="question-area margintop">
             <el-input type="textarea" placeholder="请编辑问题？" v-model="question" ></el-input>
             <div v-for="(item, index) in items" :key="item.value" class="margintop radioChoose" id="radioChoose">
                 <el-radio :label="index" v-model="radio">
-                  <el-input type="text"  v-model="item.input" placeholder="【单选】"></el-input>
-                    <el-radio  label="choose" v-model="item.isChoose">可填空</el-radio>
+                  <el-input type="text"  v-model="item.input" placeholder="【多选】"></el-input>
                     <el-button size="small" type="primary" class="delete" @click="deleteChoose(index)">删除</el-button>
                 </el-radio>
               
@@ -92,7 +91,7 @@
       </el-card>
 
      <!-- 提问编辑完成区域-->
-     <el-card class="margintop question-wrap" v-show="radioQuestion" ref="questionWrap">
+     <el-card class="margintop question-wrap input-wrap" v-show="radioQuestion" ref="questionWrap">
         <div class="btn-area">
           <el-button size="small" type="primary">上移</el-button>
           <el-button size="small" type="primary">下移</el-button>
@@ -100,28 +99,25 @@
           <el-button size="small" type="primary"  @click="removeChoose" >删除</el-button>
         </div>
 
-       <!-- 单选编辑完成区域-->
+       <!-- 提问编辑完成区域-->
        <div class="radioFinish" ref="radioFinish">
-          <h4 ref="h4">{{question}}<span>【单选】</span></h4>
-          <div v-for="item in items" :key="item.value">
-            <el-radio>{{item.input}} <el-input  v-if="item.isChoose"></el-input></el-radio>
+          <h4 ref="h4">{{question}}<span>【提问】</span></h4>
+          <div v-for="item in inputItems" :key="item.value">
+            <el-input>{{item.input}}</el-input>
           </div>
        </div>
 
-        <!-- 单选编辑区域 -->
+        <!-- 提问编辑区域 -->
        <div class="edit margintop" v-show="showwrap" ref="edit">
           <div class="question-area margintop">
             <el-input type="textarea" placeholder="请编辑问题？" v-model="question" ></el-input>
             <div v-for="(item, index) in items" :key="item.value" class="margintop radioChoose" id="radioChoose">
                 <el-radio :label="index" v-model="radio">
-                  <el-input type="text"  v-model="item.input" placeholder="【单选】"></el-input>
-                    <el-radio  label="choose" v-model="item.isChoose">可填空</el-radio>
+                  <el-input type="text"  v-model="item.input" placeholder="【提问】"></el-input>
                     <el-button size="small" type="primary" class="delete" @click="deleteChoose(index)">删除</el-button>
                 </el-radio>
               
             </div>
-
-            <el-button size="small" type="primary" class="margintop addchoose" @click="addChoose">增加选项</el-button>
           </div>
           
           <div class="edit-wrap margintop">
@@ -153,38 +149,50 @@ export default {
       radioQuestion: true,
       showwrap: true,
       question: '',
-      items: [{
-        'radio': '【单选】',
+      radioItems: [{ // 单选模板
         'input': '【单选】',
         'isChoose': false
       },
       {
-        'radio': '【单选2】',
         'input': '【单选】',
         'isChoose': false
       },
       {
-        'radio': '【单选3】',
         'input': '【单选】',
         'isChoose': false
       }],
       newItem: {
-        'radio': '【单选】',
         'input': '【单选】',
         'isChoose': false
       },
+      checkboxItems: [{ // 多选模板
+        'input': '【多选】',
+        'isChoose': false
+      },
+      {
+        'input': '【多选】',
+        'isChoose': false
+      },
+      {
+        'input': '【多选】',
+        'isChoose': false
+      }],
+      inputItems: [{ // 提问模板
+        'input': '【多选】',
+        'isChoose': false
+      }],
       value: ''
     }
   },
   methods: {
     // 增加选项
     addChoose() {
-      this.items.push(this.newItem)
-      this.newItem = { 'radio': '【单选】', 'input': '【单选】', 'isChoose': false } // 注意这个一定要重置
+      this.radioItems.push(this.newItem)
+      this.newItem = { 'input': '【单选】', 'isChoose': false } // 注意这个一定要重置
     },
     // 删除选项
     deleteChoose(index) {
-      this.items.splice(index, 1)
+      this.radioItems.splice(index, 1)
     },
     // 完成编辑
     finshEdit(event) {
