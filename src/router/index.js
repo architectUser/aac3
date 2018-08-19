@@ -30,14 +30,24 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: 'Dashboard',
+    name: 'dashboard',
     hidden: true,
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
+    }
+    ]
+  },
+  {
+    path: '/editAd',
+    component: Layout,
+    redirect: '/editAd',
+    name: 'editAd',
+    hidden: true,
+    children: [{
+      path: '/editAd', component: () => import('@/views/news/hots/editAd')
     }]
   },
-
   {
     path: '/example',
     component: Layout,
@@ -55,7 +65,6 @@ export const constantRouterMap = [
     path: '/news',
     component: Layout,
     redirect: '/news',
-    name: '',
     meta: { title: '最新发布', icon: 'form' },
     children: [
       {
@@ -124,7 +133,6 @@ export const constantRouterMap = [
       }
     ]
   },
-  { path: '/editAd', component: () => import('@/views/news/hots/editAd') },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

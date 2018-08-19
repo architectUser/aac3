@@ -40,9 +40,30 @@
           <el-table-column prop="position" label="职位">
   
           </el-table-column>
+          <!-- 操作列 -->
+            <el-table-column fixed="right" label="操作" width="100">
+                <template slot-scope="scope">
+                    <el-button @click="handleClickDetail(scope.row)" type="text" size="small">查看</el-button>
+                    <el-button type="text" size="samll" @click="dialogForm(scope.$index)">编辑</el-button>
 
+                </template>
+            </el-table-column>
         </el-table>
-        
+             
+            <el-dialog title="路线标题编辑" :visible.sync="dialogFormVisable">
+                       <el-form ref="rotuerform" :model="rotuerform" label-width="120px">
+                        <el-form-item label="联系电话">
+                          <el-input v-model="rotuerform.mobile"></el-input>
+                        </el-form-item>
+                        <el-form-item label="联系人">
+                           <el-input v-model="rotuerform.name"></el-input>
+                        </el-form-item>
+                       </el-form>
+                      <div slot="footer" class="dialog-footer">
+                          <el-button @click="confirm(row)" type="primary">确认</el-button>
+                          <el-button @click="dialogFormVisable=false">取消</el-button>
+                      </div>
+            </el-dialog>       
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage1" :page-sizes="[100, 200, 300, 400]"
        :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400">
 
@@ -138,7 +159,7 @@
   
     data() {
       return {
-        activeName: 'car',
+        activeName: 'usually',
         currentPage1: 1,
         currentPage2: 1,
         currentPage3: 1,
@@ -173,6 +194,13 @@
           'mobile': '188-8888-8888',
           'position': 'HR'
         }
+        ],
+        dialogFormVisable: false,
+        rotuerform: [
+          {
+            name: '',
+            mobile: ''
+          }
         ]
       }
     },
@@ -180,10 +208,26 @@
       handleClick(tab, event) {
         console.log(tab, event)
       },
+      handleClickDetail(row) {
+        alert(0)
+        console.log(row)
+      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`)
       },
       handleCurrentChange(val) {
+      },
+      dialogForm(row) {
+        this.dialogFormVisable=true
+        this.rotuerform.mobile = row.mobile
+        this.rotuerform.name = row.name
+        console.log(row)
+      },
+      confirm(index) {
+        console.log(this.rotuerform.mobile)
+        console.log(this.tableData[index])
+        this.tableData[index].mobile = this.rotuerform.mobile
+        this.tableData[index].name = this.rotuerform.name
       }
     }
   }

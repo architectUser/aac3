@@ -1,6 +1,6 @@
 <template>
   <div class='tinymce'>
-    <h1>tinymce</h1>
+    <h1>广告编辑</h1>
     <editor id='tinymce' v-model='tinymceHtml' :init='init'></editor>
     <div v-html='tinymceHtml'></div>
   </div>
@@ -45,7 +45,7 @@ export default {
 
 <style ref="stylesheet/scss" lang="scss" scoped>
 .tinymce{
-    width: 80%;
+    width: 90%;
     margin: 20px;
 }
 </style>
