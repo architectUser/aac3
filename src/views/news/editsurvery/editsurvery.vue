@@ -43,23 +43,20 @@ export default {
   methods: {
     // 选择相应的下拉选项框对应相应的模板
     getOption() {
-      console.log('this.value' + this.value);
-      console.log(1);
-      this.add(this.value);
+      console.log('this.value' + this.value)
+      console.log(1)
+      this.add(this.value)
     },
     // 添加模板
-    add(component){
-      //console.log(this.template)
+    add(component) {
       this.template.push({
         'component': component
       })
     },
     // 删除模板
-    remove(){
-      console.log(1);
-      // this.template.splice(index, 1)
+    remove() {
+      console.log(1)
     }
-  
   },
   components: {
     'RadioComponent': RadioComponent,

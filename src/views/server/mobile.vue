@@ -5,7 +5,7 @@
   
     <div solt="header" class="header">
   
-      <el-input v-model="input" placeholder="请搜索电话" auto-complete="on" class="search"></el-input>
+      <el-input v-model="serach" placeholder="请搜索电话" auto-complete="on" class="search"></el-input>
   
       <el-button type="primary">搜索</el-button>
   
@@ -23,8 +23,12 @@
   
       <el-tab-pane label="常用电话" name="usually">
   
-        <el-table :data="tableData" style="width: 100%">
-  
+        <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+          
+          <el-table-column type="selection" width="55">
+
+          </el-table-column>
+
           <el-table-column prop="date" label="日期" width="180">
   
           </el-table-column>
@@ -44,7 +48,7 @@
             <el-table-column fixed="right" label="操作" width="100">
                 <template slot-scope="scope">
                     <el-button @click="handleClickDetail(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button type="text" size="samll" @click="dialogForm(scope.$index)">编辑</el-button>
+                    <el-button type="text" size="samll" @click="dialogForm(scope.row)">编辑</el-button>
 
                 </template>
             </el-table-column>
@@ -60,7 +64,7 @@
                         </el-form-item>
                        </el-form>
                       <div slot="footer" class="dialog-footer">
-                          <el-button @click="confirm(row)" type="primary">确认</el-button>
+                          <el-button @click="confirm(current)" type="primary">确认</el-button>
                           <el-button @click="dialogFormVisable=false">取消</el-button>
                       </div>
             </el-dialog>       
@@ -159,11 +163,13 @@
   
     data() {
       return {
+        serach: '',
         activeName: 'usually',
         currentPage1: 1,
         currentPage2: 1,
         currentPage3: 1,
         currentPage4: 1,
+        current: '',
         tableData: [{
           'date': '2018-07-26',
           'name': '程咬金',
@@ -196,12 +202,11 @@
         }
         ],
         dialogFormVisable: false,
-        rotuerform: [
+        rotuerform:
           {
             name: '',
             mobile: ''
           }
-        ]
       }
     },
     methods: {
@@ -218,16 +223,21 @@
       handleCurrentChange(val) {
       },
       dialogForm(row) {
-        this.dialogFormVisable=true
+        this.dialogFormVisable = true
         this.rotuerform.mobile = row.mobile
         this.rotuerform.name = row.name
-        console.log(row)
+        // 获取当前行的索引值
+        console.log(row.index)
+        this.current = row.index
       },
-      confirm(index) {
-        console.log(this.rotuerform.mobile)
-        console.log(this.tableData[index])
-        this.tableData[index].mobile = this.rotuerform.mobile
-        this.tableData[index].name = this.rotuerform.name
+      confirm() {
+        this.tableData[this.current].mobile = this.rotuerform.mobile
+        this.tableData[this.current].name = this.rotuerform.name
+        this.dialogFormVisable = false
+      },
+      tableRowClassName ({row, rowIndex}) {
+        //把每一行的索引放进row
+        row.index = rowIndex;
       }
     }
   }

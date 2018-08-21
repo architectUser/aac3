@@ -1,8 +1,21 @@
 <template>
   <div style="padding:30px;">
     <el-row :gutter="20"> 
-        <el-col :span="6" @click="createSurvery"><el-card>+</el-card></el-col>
-        <el-col :span="6"><el-card>调查问卷</el-card></el-col>
+        <el-col :span="6" @click="createSurvery">
+          <el-card>
+            <div>+</div>
+            <hr>
+          <!-- 编辑区域 -->
+            <el-button size="mini" type="primary" plain>发布</el-button>&nbsp;&nbsp;<el-button size="mini" type="danger" plain>删除</el-button>
+          </el-card>
+        </el-col>
+        <el-col :span="6" @click="detailSurvery">
+          <el-card>
+            <div>调查问卷</div>
+            <hr>
+           <!-- 编辑区域 -->
+            <el-button size="mini" type="primary" plain>发布</el-button>&nbsp;&nbsp;<el-button size="mini" type="danger" plain>删除</el-button>
+          </el-card></el-col>
         <el-col :span="6"><el-card>调查问卷</el-card></el-col>
         <el-col :span="6"><el-card>调查问卷</el-card></el-col>
     </el-row>
@@ -13,7 +26,7 @@
         <el-col :span="6"><el-card>调查问卷</el-card></el-col>
     </el-row>
 
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>问题</span>
         <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
@@ -21,7 +34,7 @@
       <div v-for="o in 4" :key="o" class="text item">
         {{'答案 ' + o }}
       </div>
-    </el-card>
+    </el-card> -->
   </div>
 </template>
 
@@ -45,6 +58,9 @@
             message: '取消输入'
           })
         })
+      },
+      detailSurvery() {
+        this.$routers.push('./')
       }
     }
   }
@@ -73,5 +89,8 @@
 
   .box-card {
     width: 480px;
+  }
+  hr{
+    border: 1px dashed #f1f1f1;
   }
 </style>

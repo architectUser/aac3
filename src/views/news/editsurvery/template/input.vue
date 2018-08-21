@@ -81,29 +81,29 @@ export default {
     // 完成编辑
     finshEdit(event) {
       this.hidden = true
-      this.showwrap=!this.showwrap
+      this.showwrap = !this.showwrap
     },
     // 删除编辑区域
     remove() {
-        let index = this.text;
-        this.template.splice(index,1);
+      const index = this.text
+      this.template.splice(index, 1)
     },
     // 上移编辑区域
-    upmove(){
-        let index = this.text
-        let arr = this.template[index]
-        if (index > 1) {
-         this.$set(this.template, index, this.template[index - 1])
-         this.$set(this.template, index - 1, arr)
-        } 
+    upmove() {
+      const index = this.text
+      const arr = this.template[index]
+      if (index > 1) {
+        this.$set(this.template, index, this.template[index - 1])
+        this.$set(this.template, index - 1, arr)
+      }
     },
     // 下移编辑区域
     downmove() {
       const index = this.text
       const arr = this.template[index]
       if (index < this.template.length - 1) {
-          this.$set(this.template, index, this.template[index+1])
-          this.$set(this.template, index + 1, arr)
+        this.$set(this.template, index, this.template[index + 1])
+        this.$set(this.template, index + 1, arr)
       }
     },
     // 选择相应的下拉选项框对应相应的模板
